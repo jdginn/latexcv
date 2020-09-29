@@ -204,7 +204,7 @@
 
 % renders a standard latex list but abstracts away the environment definition (begin/end)
 \newcommand{\cvlist}[1] {
-	\begin{itemize}{#1}\end{itemize}
+	\begin{itemize}[itemsep=0pt]{#1}\end{itemize}
 }
 
 %----------------------------------------------------------------------------------------
@@ -377,7 +377,9 @@
 
 \cvskill{GIT} {3+ yrs} {1} \\[-2pt]
 
+\cvskill{Microcontrollers} {2+ yrs} {0.7} \\[-2pt]
 
+\cvskill{Firmware} {1+ yrs} {0.5} \\[-2pt]
 
 \vfill\null
 %---------------------------------------------------------------------------------------
@@ -409,38 +411,52 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 
 
 %---------------------------------------------------------------------------------------
-%	CERTIFICATION
+%	TOOLS
 %----------------------------------------------------------------------------------------
 \newpage
-%\cvsection{CERTIFICATIONS}
-%
-%\cvmetaevent
-%{LPIC 1 - Linux administrator}
-%{}
-%{}
-%{Certificate issued by the Linux Professional Institute to prove abilities in Linux administration}
-%
-%\cvmetaevent
-%{IBM InfoSphere Advanced DataStage Essentials}
-%{}
-%{}
-%{Intense course about the ETL technologies and the use of IBM DataStage.}
-%
-%\cvmetaevent
-%{Jump Start Program}
-%{}
-%{}
-%{Two months full-time training in object oriented programming in Java SE/EE, software development, testing and modern enterprise web-frameworks. Other topics were object oriented design patterns, test-driven development, SQL-databases and webservers in Java environment (Tomcat / Glasfish / JBoss / Jety)}
-%
-%
-%\cvmetaevent
-%{Online Classes}
-%{}
-%{}
-%{It is important for me to stay up to date with the newest topics in the field of IT. In DevOps it is also important to have a general overview and a hands-on experience on them. Therefore, besides intense article studies, I also keep myself up to date with online classes.}
-%
-%\vfill
-%\cvqrcode{0.7}
+\cvsection{SOFT SKILLS}
+
+\cvskill{Vision} {} {1} \\[-2pt]
+
+\cvskill{Initiative} {} {1} \\[-2pt]
+
+\cvskill{Innovation} {} {0.9} \\[-2pt]
+
+\cvskill{Negotiation} {} {0.7} \\[-2pt]
+
+\vfill
+
+%---------------------------------------------------------------------------------------
+%	TOOLS
+%----------------------------------------------------------------------------------------
+\cvsection{TOOLS}
+
+\icontext{KeyboardO}{12}{vim}{black}\\[6pt]
+\icontext{Search}{12}{ripgrep}{black}\\[6pt]
+\vcenteredhbox{\icon{Linux}{12}{} \icon{Apple}{12}{}}  \parbox{0.9\mpwidth}
+
+\vfill
+
+\cvsection{PHILOSOPHY}
+
+\begin{small}
+\icontext{QuoteLeft}{12}{fight black magic, wherever it is believed in}{black}\\[6pt]
+\icontext{QuoteLeft}{12}{fight technical debt at any cost}{black}\\[6pt]
+\icontext{QuoteLeft}{12}{architect for greatness, prioritize MVP}{black}\\[6pt]
+\icontext{QuoteLeft}{12}{leverage your effort}{black}\\[6pt]
+\icontext{QuoteLeft}{12}{everone is a leader}{black}\\[6pt]
+\end{small}
+
+\vfill
+
+%---------------------------------------------------------------------------------------
+%	OUTSIDE THE OFFICE
+%----------------------------------------------------------------------------------------
+\cvsection{ACTIVITIES}
+
+\icontext{Music}{12}{music production}{black}\\[6pt]
+
+\vfill\null
 
 \end{leftcolumn}
 \begin{rightcolumn}
@@ -463,8 +479,10 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 	\vspace{-10pt}
 \cvsection{PROFILE}
 
-\cvtext{Computer Engineer with a passion for architecting technical systems to allow engineering teams to reach their full potential.\\
+\cvtext{
+	Experienced Computer Engineer with a passion for architecting systems to allow teams to reach their full potential.\\
 
+	Lorem ipsum dolor est
 }
 
 %---------------------------------------------------------------------------------------
@@ -477,20 +495,24 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 	{Oct 17 - Now}
 	{Microcontroller Assisted Test Lead}
 	{IBM}
-	{Spearheaded test solution to leverage firmware code in manufacturing test}
+	{
+		Spearheaded test solution to leverage firmware code in manufacturing test to unity test conditions with in-server to improve test quality\\
+	}
 	{\cvlist{
 		\item Owned Poweron Reset sequence for Power10 used in manufacturing, bringup, and burn-in
-		\item Drove presilicon verification of Poweron Reset sequence
+		\item Drove presilicon verification of test functionality, virtual bringup for firmware
 		\item Interfaced with firmware, verification, and design, and manufacturing teams to support firmware code at manufacturing test
+		\item Trained new hires and educated stakeholder teams in MAT usage
 	}}
 	{\cvlist {
 		\item Architected Python API to interface with embedded microcontrollers using firmwware code written in C++
-		\item Supported 
+		\item Developed interface between embedded microcontrollers and Automatic Test Equipment using python to comprehend ELF and DWARF binary formats
+		\item Managed team's interaction with a large Gerrit repository
 	}}
 	{\cvlist{
 		\item IBM Outsanding Technical Achievement Award for Innovation, awarded for Microcontroller Assisted Test
 		\item Reduced test-sector poweron time by 70\% generation over generation
-		\item First time right bringup
+		\item First-time-right bringup using Microcontroller Assisted Test strategy
 	}}
 
 \vfill\null
@@ -498,18 +520,18 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 	{Oct 17 - Oct 18}
 	{Design For Test Engineer}
 	{IBM}
-	{Functional Exercisers Owner}
+	{Functional Exercisers Owner for manufacturing test}
 	{\cvlist{
 		\item Created register-level test sequences to power on, configure, and load the processor
 		\item Delivered test patterns for Ultraflex and J973 manufacturing testers
 		\item Supported voltage droop mitigation sensor testing and calibration
+		\item Interfaced with circuit and system characterization teams to support test to real-world correlation
 	}}
 	{\cvlist {
-		\item Django for Visualization
+		\item Automation using shell scripting, Perl, and Python
 	}}
-	{\cvlist{
-		\item Django tool on LDAP - Schema Review
-	}}
+	{}
+	{}
 
 \vfill\null
 \cvevent
@@ -521,12 +543,8 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 		\item Delivered enhanced manufacturing test patterns to eliminate a category of test escapes.
 		\item Assisted with array and functional coverage improvements to support Power9 bringup and General Announcement.
 	}}
-	{\cvlist {
-		\item Ansible for infrastructure automaton and configuration management
-	}}
-	{\cvlist{
-		\item Drastically accelerated (~20x faster) the update process and improved its reliability by introduction of centralized configuration management
-	}}
+	{}
+	{}
 
 \vfill\null
 \cvevent
@@ -544,15 +562,21 @@ A Framework for Near-Realtime Signal of Interest Identification and Reconstructi
 		\item Awarded for best intern presentation in Microcontrollers Devision, 2016
 	}}
 
-% hotfixes to create fake-space to ensure the whole height is used
-\mbox{}
-\vfill
-\mbox{}
-\vfill
-\mbox{}
-\vfill
-\mbox{}
+\vfill\null
+\cvevent
+	{May 15 - Jul 15}
+	{Test Engineering Intern}
+	{National Instruments}
+	{Developed a suite of tools to automatically configure network ports and device configuration in test stations}
+	{\cvlist{
+		\item Designed an in-house replacement for LED test equipment, saving the company a potential \$35,000 over next 3 years if design is used.
+	}}
+	{}
+	{}
+	
+
 \end{rightcolumn}
+%\clearpage
 \end{paracol}
 \end{document}
 
