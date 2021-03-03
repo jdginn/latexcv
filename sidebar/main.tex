@@ -44,7 +44,7 @@
 %----------------------------------------------------------------------------------------
 
 % provides \isempty test
-\usepackage{xifthen}
+\usepackage{xstring, xifthen}
 
 %----------------------------------------------------------------------------------------
 %	FONT
@@ -75,7 +75,7 @@
 %----------------------------------------------------------------------------------------
 
 %debug page outer frames
-%\usepackage{showframe}			
+\usepackage{showframe}			
 
 
 %define page styles using geometry
@@ -227,9 +227,18 @@
 % param 1:	event time i.e. 2014 or 2011-2014 etc.
 % param 2:	event name (what did you do?)
 % param 3:	institution (where did you work / study)
-% param 4:	what was your position
-% param 5:	some words about your contributions
+% param 4:	nested list of key roles and bullet points
+% param 5:	list of achievements and recognition
 %
+
+\newcommand{\cvsubevent}[2]
+{
+	\larrow{softcol} {#1} \\[3pt]
+	\ifthenelse{\isempty{#2}}{}{
+		\larrow{softcol} {#2} \\[2pt]
+	}
+}
+
 \newcommand{\cvevent}[5]
 {
 \vspace{8pt}
@@ -240,11 +249,11 @@
 \vspace{-12pt}
 \textcolor{softcol}{\hrule}
 \vspace{6pt}
-	\begin{tabular*}{0.5\mpwidth}{p{\mpwidth}}
-\larrow{softcol}  #4\\[3pt]
-\larrow{softcol}  #5\\[6pt]
-	\end{tabular*}
-
+%	\begin{tabular*}{0.5\mpwidth}{p{\mpwidth}}
+\foreach \x in {#4}{%
+	\larrow{softcol}  \x\\[3pt] }
+%	\cvsubevent{\x}}
+%	\end{tabular*}
 }
 
 % creates a stretched box as 
@@ -369,7 +378,7 @@ JavaScript fullstack engineer, M.Sc. Digital Media, focuses on education and hea
 \cvsection{Experience}
 
 %
-\cvevent{2016/09 - now}{Fullstack Javascript Engineer}{University of Bremen}{Invent a realtime classroom management using Meteor and React}{Design software architecture and leading development}
+\cvevent{2016/09 - now}{Fullstack Javascript Engineer}{University of Bremen}{{{Invent a realtime classroom management using Meteor and React},{baz}},{foo}}{Design software architecture and leading development}
 
 %\textcolor{softcol}{\hrule}
 
