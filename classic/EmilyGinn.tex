@@ -148,13 +148,16 @@
 \usepackage{color}
 
 %accent color
-\definecolor{sectcol}{RGB}{0,150,255}
+\definecolor{sectcol}{RGB}{102,105,130}
 
 %dark background color
 \definecolor{bgcol}{RGB}{110,110,110}
 
 %light background / accent color
 \definecolor{softcol}{RGB}{225,225,225}
+
+%subtle accent
+\definecolor{subtle}{RGB}{35,35,55}
 
 
 %============================================================================%
@@ -249,7 +252,7 @@
     \setitemize{topsep=0pt,parsep=0pt, partopsep=0pt}
     %\setitemize{noitemsep, nosep, topsep=0pt,parsep=0pt, partopsep=0pt}
     \begin{itemize}[leftmargin=*]
-    {#1}
+            {#1}
     \end{itemize}
 }
 
@@ -287,29 +290,34 @@
 	% if you need more control on page breaks, remove the parbox
 	\parbox{\mpwidth}{
 		\begin{tabular*}{1\mpwidth}{p{0.72\mpwidth}  r}
-	 		\textcolor{black}{\textbf{#2}} & \colorbox{sectcol}{\makebox[0.25\mpwidth]{\textcolor{white}{#1}}} \\
+			\textcolor{black}{\textbf{#2}} & \colorbox{sectcol}{\makebox[0.25\mpwidth]{\textcolor{white}{#1}}} \\
 			\textcolor{sectcol}{\textbf{#3}} & \\
 		\end{tabular*}\\[8pt]
 	
 		\ifthenelse{\isempty{#4}}{}{
+            \vspace{-2pt}
 			\cvtext{#4}\\
+            \vspace{-2pt}
 		}
 	}
 
 	\ifthenelse{\isempty{#5}}{}{
 		\vspace{9pt}
-		{#5}
+        {#5}
 	}
 
 	\ifthenelse{\isempty{#6}}{}{
-		\vspace{9pt}
-		\cvtext{\textbf{Expertise:}}\\
+		\vspace{6pt}
+        \cvtext{\textbf{\textcolor{sectcol}{Expertise:}}}\\
+        %\cvtext{Expertise:}\\
+        \vspace{-6pt}
 		{#6}
 	}
 
 	\ifthenelse{\isempty{#7}}{}{
-		\vspace{9pt}
+		\vspace{6pt}
 		\cvtext{\textbf{Achievements include:}}\\
+        \vspace{-6pt}
 		{#7}
 	}
 	\vspace{14pt}
@@ -378,8 +386,8 @@
 %----------------------------------------------------------------------------------------
 \metasection{Austin, Texas}{\textbf{Status:} doing something}
 \metasection{TODO: linkedin?}{\textbf{Fields:} Audit, Management, Financial Analysis}
-\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Excel, PowerBI}
-\metasection{(832) 310-0738}{\textbf{Activities:} Austin water activities, Formula 1}
+\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Leadership, Excel, PowerBI}
+\metasection{(832) 310-0737}{\textbf{Hotbbies:} Austin water activities, Formula 1}
 \vspace{-2pt}
 \textcolor{softcol}{\hrule}
 \vspace{6pt}
@@ -412,20 +420,20 @@
     {2019 - present}
     {Audit Senior}
     {Deloitte \& Touche LLP}
-    {Audit Team Manager}
+    {Oversaw audits of public and private companies’ quarterly and annual filings in accordance with AICPA and/or PCAOB standards}
     {\cvlist{
-        \item Oversaw audits of public and private companies’ quarterly and annual filings in accordance with AICPA and/or PCAOB standards
-        \item Managed cross-functional teams of up to 12 staff and seniors with projects spanning between 2 months and 2 years
-        \item Managed international teams, often multiple at a time
-        \item Led design, implementation, and operating effectiveness testing of more than 50 internal controls, adhering to SOX
+        \item Managed cross-functional teams of \textcolor{subtle}{up to 12 staff and seniors} with projects spanning between 2 months and 2 years
+        \item \textcolor{subtle}{Managed} international teams, often multiple at a time
+        \item Led design, implementation, and operating effectiveness testing of more than 50 internal controls, \textcolor{subtle}{adhering to SOX}
         \item Tailored the testing approach on an account by account basis to ensure on-time deliverables while ensuring project budget was met
         \item Planned, scoped, and created strategy for assessing financial statement risk
         \item Improved client relationships through dedication to mutual respect and success
-        \item  Mentored new staff across 3 teams to bring them up to productivity
+        \item \textcolor{subtle}{Mentored} new staff across 3 teams to bring them up to productivity
     }}
     {\cvlist{
-        \item Strong experience with US GAAP and SEC reporting standards
-        \item Strong experience with FSI clients, particularly the insurance industry; experience with SaaS and EGC clients
+        \item Strong experience with \textcolor{subtle}{US GAAP and SEC} reporting standards
+        \item Strong experience with \textcolor{subtle}{FSI} clients, particularly insurance industry
+        \item Experience with \textcolor{subtle}{Saas and EGC} clients 
     }}
     {}
 
@@ -434,25 +442,26 @@
     {2017 - 2019}
     {Staff}
     {Deloitte \& Touche LLP}
-    {Audit Badass}
+    {Drove audit results through interaction with both internal and external management teams}
     {\cvlist{
-        \item Reengineered revenue testing strategy to align with ASC 606 for a multinational public company
+        \item Reengineered revenue testing strategy to align with \textcolor{subtle}{ASC 606} for a multinational public company
         \item Oversaw testing of balance sheet and P\&L accounts from risk assessment to reporting
-        \item Drove audit results through interaction with both internal and external management teams
         \item Initiated and documented testing of quarterly and annual financial statements
         \item Planned university recruiting events
         \item Invested personally in recruiting and developing talent
     }}
-    {}
+    {\cvlist{
+        \item ASC 606
+    }}
     {}
 
 %\textcolor{softcol}{\hrule}
 
 %
-\cvevent{2015 - 2017}{Audit Intern}{Deloitte \& Touche LLP}{foo}
+\cvevent{2015 - 2017}{Audit Intern}{Deloitte \& Touche LLP}{}
 {\cvlist{
     \item Documented audit processes and results
-    \item Participated in team-wide discussions around risk controls and strategies
+    \item Participated in team-wide discussions around \textcolor{subtle}{risk controls and strategies}
 }}
 {}
 {}
@@ -464,12 +473,12 @@
 %--------------------------------------------------------------------------------------
 \cvsection{Education}
 
-\cvevent{2016  2017}{M.Sc. Marketing}{Texas A\&M University}{Senior project: revolutionizing marketing for cake company}{}{}{}
+\cvevent{2016  2017}{Master of Science,  Marketing}{Texas A\&M University}{Senior project: Reinvented marketing stategy for a baking company}{}{}{}
 
 %\textcolor{softcol}{\hrule}
 
 %
-\cvevent{2012 - 2016}{B.Ba. Accounting}{Texas A\&M University}{cool stuff}{}{}{}
+\cvevent{2012 - 2016}{Bachelor of Business Administration, Accounting}{Texas A\&M University}{}{}{}{}
 
 %\textcolor{softcol}{\hrule}
 
@@ -480,9 +489,9 @@
 %	ARTIFICIAL FOOTER (fancy footer cannot exceed linewidth) 
 %--------------------------------------------------------------------------------------------------
 
-\null
-\vspace*{\fill}
-\hspace{-0.25\linewidth}\colorbox{white}{\makebox[1.5\linewidth][c]{\mystrut  \textnormal{\textcolor{sectcol}{www.jankuester.com} $\cdot$ \textcolor{sectcol}{github.com/jankapunkt}}}}
+%\null
+%\vspace*{\fill}
+%\hspace{-0.25\linewidth}\colorbox{white}{\makebox[1.5\linewidth][c]{\mystrut  \textnormal{\textcolor{sectcol}{www.jankuester.com} $\cdot$ \textcolor{sectcol}{github.com/jankapunkt}}}}
 
 
 
