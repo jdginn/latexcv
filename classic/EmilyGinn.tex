@@ -242,12 +242,12 @@
 \newcommand{\vthemebox}[4]{
 \begin{center}
 \large{#1}\normalsize\\
-    \vspace{8pt}
-    {#2} 
-
-    {#3} 
-
-    {#4} 
+    \vspace{4pt}
+    {#2} \\
+    \vspace{2pt}
+    {#3} \\
+    \vspace{2pt}
+    {#4} \\
 \end{center}
 }
 
@@ -391,7 +391,9 @@
 	%\HUGE \textsc{Emily Ginn, CPA} \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Resume}\\[2pt]
 	\HUGE \textsc{Emily Ginn, CPA} \textcolor{sectcol}\\
 	%\small Audit Professional
+    \vspace{2pt}
 	\small Active CPA License in the State of Texas
+    \vspace{-4pt}
 \end{center}
 
 
@@ -503,7 +505,7 @@
 \cvevent{2016  2017}{Master of Science,  Marketing}{Texas A\&M University}{Senior project: Reinvented marketing stategy for a baking company}{}{}{}
 
 %\textcolor{softcol}{\hrule}
-\vspace{-12pt}
+\vspace{-8pt}
 %
 \cvevent{2012 - 2016}{Bachelor of Business Administration, Accounting}{Texas A\&M University}{}{}{}{}
 
@@ -513,7 +515,6 @@
 %	ABOUT ME
 %--------------------------------------------------------------------------------------
 %\cvsection{About Me}
-\vspace{12pt}
 
 %\large
 %\metasection{Skills}{Interests}{Ask Me About}
@@ -521,22 +522,28 @@
 %\metasection{Leadership}{Water activities around Austin}{Living Overseas}
 %\metasection{Microsoft Excel}{Following Formula 1}{Community Engagement}
 
-\metasection{
-    \vthemebox{Skills:}
-        {Leadership}
-        {Microsoft Excel}
-        {Recruiting}
-    }
-    {\vthemebox{Hobbies:}
-        {Water activities around Austin}
-        {Following Formula 1}
-        {Finding a good hotel deal}
-    }
-    {\vthemebox{Ask Me About:}
-        {Living Overseas}
-        {Community Engagement}
-        {Recruiting}}
+\vspace{2pt}
+\begin{center}
+    \large\textcolor{sectcol}{ABOUT ME}\normalsize
+\end{center}
+\vspace{-4pt}
 
+\begin{paracol}{3}
+\vthemebox{Skills:}
+    {Leadership}
+    {Microsoft Excel}
+    {Recruiting}
+\switchcolumn
+\vthemebox{Hobbies:}
+    {Water activities around Austin}
+    {Following Formula 1}
+    {Finding a good hotel deal}
+\switchcolumn
+\vthemebox{Ask Me About:}
+    {Living Overseas}
+    {Community Engagement}
+    {Recruiting}
+\end{paracol}
 
 %--------------------------------------------------------------------------------------------------
 %	ARTIFICIAL FOOTER (fancy footer cannot exceed linewidth) 
