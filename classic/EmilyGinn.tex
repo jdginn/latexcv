@@ -224,17 +224,17 @@
 \newcommand{\cvsection}[1]
 {
 	\begin{center}
-		\large\textcolor{sectcol}{\textbf{#1}}
+		\LARGE\textcolor{sectcol}{\textsc{#1}}\large
 	\end{center}
 }
 
 %create a coloured arrow with title as cv meta section section
 % param 1: meta section title
 %
-\newcommand{\metasection}[2]
+\newcommand{\metasection}[3]
 {
 %\begin{tabular*}{1\textwidth}{r r}
-\footnotesize{#2} \hspace*{\fill} \footnotesize{#1}\\[1pt]
+\footnotesize{#1} \hspace*{\fill} \footnotesize{#2} \hspace*{\fill} \footnotesize{#3}\\[1pt]
 %\end{tabular*}
 }
 
@@ -251,7 +251,7 @@
 \newcommand{\cvlist}[1] {
     \setitemize{topsep=0pt,parsep=0pt, partopsep=0pt}
     %\setitemize{noitemsep, nosep, topsep=0pt,parsep=0pt, partopsep=0pt}
-    \begin{itemize}[leftmargin=*]
+    \begin{itemize}[leftmargin=5.3mm]
             {#1}
     \end{itemize}
 }
@@ -295,22 +295,25 @@
 		\end{tabular*}\\[8pt]
 	
 		\ifthenelse{\isempty{#4}}{}{
-            \vspace{-2pt}
-			\cvtext{#4}\\
+            \vspace{-8pt}
+            \cvtext{\textit{#4}}\\
             \vspace{-2pt}
 		}
 	}
 
 	\ifthenelse{\isempty{#5}}{}{
-		\vspace{9pt}
+		\vspace{6pt}
         {#5}
 	}
 
 	\ifthenelse{\isempty{#6}}{}{
 		\vspace{6pt}
-        \cvtext{\textbf{\textcolor{sectcol}{Expertise:}}}\\
+        %\cvtext{\textbf{\textcolor{sectcol}{Expertise:}}}\\
+        \large
+        \cvtext{\textcolor{sectcol}{\textit{Expertise:}}}\\
+        \normalsize
         %\cvtext{Expertise:}\\
-        \vspace{-6pt}
+        \vspace{-8pt}
 		{#6}
 	}
 
@@ -384,10 +387,11 @@
 %---------------------------------------------------------------------------------------
 %	META SECTION
 %----------------------------------------------------------------------------------------
-\metasection{Austin, Texas}{\textbf{Status:} doing something}
-\metasection{TODO: linkedin?}{\textbf{Fields:} Audit, Management, Financial Analysis}
-\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Leadership, Excel, PowerBI}
-\metasection{(832) 310-0737}{\textbf{Hotbbies:} Austin water activities, Formula 1}
+%\metasection{Austin, Texas}{\textbf{Status:} doing something}
+%\metasection{TODO: linkedin?}{\textbf{Fields:} Audit, Management, Financial Analysis}
+%\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Leadership, Excel, PowerBI}
+%\metasection{(832) 310-0737}{\textbf{Hotbbies:} Austin water activities, Formula 1}
+\metasection{7500 Lobelia Dr. Austin, TX 78729}{(832) 310-0737}{emilykay.ginn@gmail.com}
 \vspace{-2pt}
 \textcolor{softcol}{\hrule}
 \vspace{6pt}
@@ -420,7 +424,7 @@
     {2019 - present}
     {Audit Senior}
     {Deloitte \& Touche LLP}
-    {Oversaw audits of public and private companies’ quarterly and annual filings in accordance with AICPA and/or PCAOB standards}
+    {Oversaw audits of public and private companies’ quarterly and annual filings in accordance with \textcolor{subtle}{AICPA and/or PCAOB} standards}
     {\cvlist{
         \item Managed cross-functional teams of \textcolor{subtle}{up to 12 staff and seniors} with projects spanning between 2 months and 2 years
         \item \textcolor{subtle}{Managed} international teams, often multiple at a time
@@ -458,9 +462,12 @@
 %\textcolor{softcol}{\hrule}
 
 %
-\cvevent{2015 - 2017}{Audit Intern}{Deloitte \& Touche LLP}{}
+\cvevent{2015 - 2017}
+{Audit Intern}
+{Deloitte \& Touche LLP}
+{Assisted with extrenal audits for public and private companies}
 {\cvlist{
-    \item Documented audit processes and results
+%    \item Documented audit processes and results
     \item Participated in team-wide discussions around \textcolor{subtle}{risk controls and strategies}
 }}
 {}
@@ -476,7 +483,7 @@
 \cvevent{2016  2017}{Master of Science,  Marketing}{Texas A\&M University}{Senior project: Reinvented marketing stategy for a baking company}{}{}{}
 
 %\textcolor{softcol}{\hrule}
-
+\vspace{-4pt}
 %
 \cvevent{2012 - 2016}{Bachelor of Business Administration, Accounting}{Texas A\&M University}{}{}{}{}
 
