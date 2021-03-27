@@ -30,6 +30,7 @@
 
 %we use article class because we want to fully customize the page and dont use a cv template
 \documentclass[10pt,A4]{article}	
+\usepackage{enumitem}
 
 
 %----------------------------------------------------------------------------------------
@@ -44,7 +45,7 @@
 %----------------------------------------------------------------------------------------
 
 % provides \isempty test
-\usepackage{xifthen}
+\usepackage{xstring, xifthen}
 
 %----------------------------------------------------------------------------------------
 %	FONT
@@ -52,14 +53,14 @@
 
 % some tex-live fonts - choose your own
 
-%\usepackage[defaultsans]{droidsans}
-%\usepackage[default]{comfortaa}
-%\usepackage{cmbright}
-\usepackage[default]{raleway}
-%\usepackage{fetamont}
-%\usepackage[default]{gillius}
-%\usepackage[light,math]{iwona}
-%\usepackage[thin]{roboto} 
+%\usepackage[defaultsans]{droidsans} % bad
+%\usepackage[default]{comfortaa} % boring but ok
+%\usepackage{cmbright} % boring
+%\usepackage[default]{raleway} % bad fit
+%\usepackage{fetamont} % decent
+%\usepackage[default]{gillius} % decent
+%\usepackage[light,math]{iwona} % forgettable
+\usepackage[thin]{roboto} % light, not bad
 
 % set font default
 \renewcommand*\familydefault{\sfdefault} 	
@@ -67,6 +68,9 @@
 
 % more font size definitions
 \usepackage{moresize}		
+
+% include the fontawesome icon set
+\usepackage{fontawesome}
 
 
 %----------------------------------------------------------------------------------------
@@ -76,6 +80,8 @@
 %debug page outer frames
 %\usepackage{showframe}			
 
+% we use paracol to display breakable two columns
+\usepackage{paracol}
 
 %define page styles using geometry
 \usepackage[a4paper]{geometry}		
@@ -103,6 +109,8 @@
 %----------------------------------------------------------------------------------------
 %	TABLE /ARRAY DEFINITIONS
 %---------------------------------------------------------------------------------------- 
+% extended aligning of tabular cells
+\usepackage{array}
 
 %for layouting tables
 \usepackage{multicol}			
@@ -227,39 +235,84 @@
 %\end{tabular*}
 }
 
+% returns minipage width minus two times \fboxsep
+% to keep padding included in width calculations
+% can also be used for other boxes / environments
+\newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
+
+%----------------------------------------------------------------------------------------
+%	 CV LIST
+%----------------------------------------------------------------------------------------
+
+% renders a standard latex list but abstracts away the environment definition (begin/end)
+\newcommand{\cvlist}[1] {
+    \setitemize{topsep=0pt,parsep=0pt, partopsep=0pt}
+    %\setitemize{noitemsep, nosep, topsep=0pt,parsep=0pt, partopsep=0pt}
+    \begin{itemize}[leftmargin=*]
+    {#1}
+    \end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	 CV TEXT
+%----------------------------------------------------------------------------------------
+
+% base class to wrap any text based stuff here. Renders like a paragraph.
+% Allows complex commands to be passed, too.
+% param 1: *any
+\newcommand{\cvtext}[1] {
+	\begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+		\parbox{1\mpwidth}{#1}
+	\end{tabular*}
+}
+
 %----------------------------------------------------------------------------------------
 %	 CV EVENT
 %----------------------------------------------------------------------------------------
 
-% creates a stretched box as cv entry headline followed by two paragraphs about 
+% Renders a table and a paragraph (cvtext) wrapped in a parbox (to ensure minimum content
+% is glued together when a pagebreak appears).
+% Additional Information can be passed in text or list form (or other environments).
 % the work you did
-% param 1:	event time i.e. 2014 or 2011-2014 etc.
-% param 2:	event name (what did you do?)
-% param 3:	institution (where did you work / study)
-% param 4:	what was your position
-% param 5:	some words about your contributions
-%
-\newcommand{\cvevent}[5]
-{
+% param 1: time-frame i.e. Sep 14 - Jan 15 etc.
+% param 2:	 event name (job position etc.)
+% param 3: Customer, Employer, Industry
+% param 4: Short description
+% param 5: work done (optional)
+% param 6: technologies include (optional)
+% param 7: achievements (optional)
+\newcommand{\cvevent}[7] {
+	
+	% we wrap this part in a parbox, so title and description are not separated on a pagebreak
+	% if you need more control on page breaks, remove the parbox
+	\parbox{\mpwidth}{
+		\begin{tabular*}{1\mpwidth}{p{0.72\mpwidth}  r}
+	 		\textcolor{black}{\textbf{#2}} & \colorbox{sectcol}{\makebox[0.25\mpwidth]{\textcolor{white}{#1}}} \\
+			\textcolor{sectcol}{\textbf{#3}} & \\
+		\end{tabular*}\\[8pt]
+	
+		\ifthenelse{\isempty{#4}}{}{
+			\cvtext{#4}\\
+		}
+	}
 
-\begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
-	\textbf{#2} - \textcolor{bgcol}{#3} &   \vspace{2.5pt}\textcolor{sectcol}{#1}
-\end{tabular*}
+	\ifthenelse{\isempty{#5}}{}{
+		\vspace{9pt}
+		{#5}
+	}
 
-\vspace{-8pt}
-\textcolor{softcol}{\hrule}
-\vspace{6pt}
+	\ifthenelse{\isempty{#6}}{}{
+		\vspace{9pt}
+		\cvtext{\textbf{Expertise:}}\\
+		{#6}
+	}
 
-  $\cdot$ #4\\[3pt]
-  $\cdot$ #5\\[6pt]
-
-}
-
-% creates a stretched box as 
-\newcommand{\cveventmeta}[2]
-{
-	\mbox{\mystrut \hspace{87pt}\textit{#1}}\\
-	#2
+	\ifthenelse{\isempty{#7}}{}{
+		\vspace{9pt}
+		\cvtext{\textbf{Achievements include:}}\\
+		{#7}
+	}
+	\vspace{14pt}
 }
 
 %----------------------------------------------------------------------------------------
@@ -310,7 +363,8 @@
 %----------------------------------------------------------------------------------------
 \vspace{-8pt}
 \begin{center}
-	\HUGE \textsc{Emily Ginn, CPA} \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Resume}\\[2pt]
+	%\HUGE \textsc{Emily Ginn, CPA} \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Resume}\\[2pt]
+	\HUGE \textsc{Emily Ginn, CPA} \textcolor{sectcol}\\
 	\small Audit Professional
 \end{center}
 
@@ -324,8 +378,8 @@
 %----------------------------------------------------------------------------------------
 \metasection{Austin, Texas}{\textbf{Status:} doing something}
 \metasection{TODO: linkedin?}{\textbf{Fields:} Audit, Management, Financial Analysis}
-\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Excel, stuff}
-\metasection{(832) 310-0738}{\textbf{Activities:} fun things}
+\metasection{emilykay.ginn@gmail.com}{\textbf{Skills:} Excel, PowerBI}
+\metasection{(832) 310-0738}{\textbf{Activities:} Austin water activities, Formula 1}
 \vspace{-2pt}
 \textcolor{softcol}{\hrule}
 \vspace{6pt}
@@ -335,11 +389,11 @@
 %---------------------------------------------------------------------------------------
 %	SUMMARAY (optional)
 %----------------------------------------------------------------------------------------
-\vspace{-6pt}
-\cvsection{Summary}
-Experienced CPA with deep experience auditing public and private firms across multiple industries,  \\
-notably FSI and SaaS with a specialization in assessing and implementing financial controls. Experinced \\
-with cross-functional communication and integration. \\
+%\vspace{-6pt}
+%\cvsection{Summary}
+%Experienced CPA with deep experience auditing public and private firms across multiple industries,  \\
+%notably FSI and SaaS with a specialization in assessing and implementing financial controls. Experinced \\
+%with cross-functional communication and integration. \\
 
 
 %============================================================================%
@@ -351,44 +405,71 @@ with cross-functional communication and integration. \\
 %---------------------------------------------------------------------------------------
 %	EXPERIENCE
 %----------------------------------------------------------------------------------------
+%\vfill\null
 \cvsection{Experience}
 
-\cvevent{2019 - present}{Senior Audit Staff}{Deloitte \& Touche LLP}
-{Directly supervised up to 12 staff and seniors at a time}
-{Managed projects spanning between 2 months and 2 years}
-{Managed international teams, often multiple at a time}
-{Provided on-time deliverables while ensuring project budget was met}
-{Oversaw audits of public and private companies’ quarterly and annual filings from}
-{Led risk assessment procedures, test of internal controls, account balance testing, and reporting procedures in accordance with the AICPA and/or the PCAOB}
-{Strong grasp of US GAAP and SEC reporting standards}
-{Something about directing the testing strategy of account-specific tests}
-{Something about timely and concise communication with upper management, both internal and external}
+\cvevent
+    {2019 - present}
+    {Audit Senior}
+    {Deloitte \& Touche LLP}
+    {Audit Team Manager}
+    {\cvlist{
+        \item Oversaw audits of public and private companies’ quarterly and annual filings in accordance with AICPA and/or PCAOB standards
+        \item Managed cross-functional teams of up to 12 staff and seniors with projects spanning between 2 months and 2 years
+        \item Managed international teams, often multiple at a time
+        \item Led design, implementation, and operating effectiveness testing of more than 50 internal controls, adhering to SOX
+        \item Tailored the testing approach on an account by account basis to ensure on-time deliverables while ensuring project budget was met
+        \item Planned, scoped, and created strategy for assessing financial statement risk
+        \item Improved client relationships through dedication to mutual respect and success
+        \item  Mentored new staff across 3 teams to bring them up to productivity
+    }}
+    {\cvlist{
+        \item Strong experience with US GAAP and SEC reporting standards
+        \item Strong experience with FSI clients, particularly the insurance industry; experience with SaaS and EGC clients
+    }}
+    {}
 
 %
-\cvevent{2017 - 2019}{Audit Staff}{Deloitte \& Touche LLP}
-{Initiated and documented testing of quarterly and annual financial statements}
-{Communicated daily with international staff, management, and external parties}
+\cvevent
+    {2017 - 2019}
+    {Staff}
+    {Deloitte \& Touche LLP}
+    {Audit Badass}
+    {\cvlist{
+        \item Reengineered revenue testing strategy to align with ASC 606 for a multinational public company
+        \item Oversaw testing of balance sheet and P\&L accounts from risk assessment to reporting
+        \item Drove audit results through interaction with both internal and external management teams
+        \item Initiated and documented testing of quarterly and annual financial statements
+        \item Planned university recruiting events
+        \item Invested personally in recruiting and developing talent
+    }}
+    {}
+    {}
 
 %\textcolor{softcol}{\hrule}
 
 %
-\cvevent{2015 - 2017}{Audit Intern}{Deloitte \& Touche LLP}
-{stuff}
-{stuff}
+\cvevent{2015 - 2017}{Audit Intern}{Deloitte \& Touche LLP}{foo}
+{\cvlist{
+    \item Documented audit processes and results
+    \item Participated in team-wide discussions around risk controls and strategies
+}}
+{}
+{}
 
-%\textcolor{softcol}{\hrule}
+\textcolor{softcol}{\hrule}
 
 %---------------------------------------------------------------------------------------
 %	EDUCATION SECTION
 %--------------------------------------------------------------------------------------
 \cvsection{Education}
 
-\cvevent{2016  2017}{M.Sc. Marketing}{Texas A\&M University}{Senior project: revolutionizing marketing for cake company}{money}
+\cvevent{2016  2017}{M.Sc. Marketing}{Texas A\&M University}{Senior project: revolutionizing marketing for cake company}{}{}{}
 
 %\textcolor{softcol}{\hrule}
 
 %
-\cvevent{2012 - 2016}{B.Ba. Accounting}{Texas A\&M University}{cool stuff}{learned excel}
+\cvevent{2012 - 2016}{B.Ba. Accounting}{Texas A\&M University}{cool stuff}{}{}{}
 
 %\textcolor{softcol}{\hrule}
 
